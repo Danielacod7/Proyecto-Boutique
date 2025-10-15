@@ -1,26 +1,28 @@
 ## Proyecto Boutique
 
-Creación de un proyecto para una Boutique en el que se puerda gestionar los productos y mostrarlos a través de una página web.
+Este repositorio contiene la estructura inicial de una aplicación web enfocada en la gestión de una boutique. Incluye la base para autenticación de usuarios, organización de archivos y la configuración necesaria para comenzar con el desarrollo.
 
-### Tecnologías Utilizadas
-Durante el proyecto se utilizarán las siguientes tecnologías para un desarrollo web:
+### Funcionalidades actuales
+- Inicio de sesión con Supabase: autenticación mediante correo y contraseña.
+- Protección de sesión: las páginas verifican el estado de sesión y redirigen al login si no existe.
+- Interfaz moderna: diseño responsivo con soporte de íconos.
+- Gestión de sesión: cierre de sesión desde la página principal.
 
-Frontend: 
-    - HTML para el estructurado de la página web.
-    - JavaScript: para la interactividad de la página.
-    - Bootstrap: para el diseño de la página web.
 
-Backend:
-    - Supabase Auth: (para el login/registro de usuarios seguro).
-    - Supabase Storage: (Para la subidad imágenes o productos de la boutique).
-    - Node.js (con APU Routes en Vercel): para una lógica del servidor ligera, además del acceso directo a Supabase.
+### Configuración inicial
+1. Clona este repositorio:
+https://github.com/Danielacod7/Proyecto-Boutique.git
 
-Herramientas de Desarrollo:
-    - Git: para el control de versiones.
-    - GitHub: para el alojamiento del código fuente.
-    - Vercel: para el despliegue de la página web.
-    - Supabase: para el almacenamiento de datos y autenticación de usuarios.
+3. Crea ek archivo de configuración pública en frontend/config.js con tus credenciales de Supabase.
 
-Deployment:
-    - Vercel Analytics: Para el ver visitas y rendimiento.
-    - Supabase Dashboard: para controlar la base de datos y el backend.
+const SUPABASE_URL = "https://tu-proyecto.supabase.co";
+const SUPABASE_ANON_KEY = "tu-clave-anonima";
+
+3. Abre frontend/login.html en tu navegador para probar la autenticación.
+
+
+###Próximos pasos
+- Implementar página de registro de usuario.
+- Agregar recuperación de contraseña
+- Integrar la lógica para mostrar y gestionar los datos de la boutique.
+- Configurar políticas de acceso en Supabase (RLS).
