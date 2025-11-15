@@ -85,6 +85,7 @@ $productos = $conexion->filtrarProductos($filtroCat, $filtroTalla);
   <a href="cliente.php">Catalogo</a>
   <a href="apartados.php">Apartados</a>
   <a href="compras.php">Compras</a>
+  <a href="telemetria.php">Vistas a la página</a>
   <a href="#" id="btnAbrirModal">Subir producto</a>
 </nav>
 

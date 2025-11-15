@@ -88,10 +88,19 @@ const productos = document.querySelectorAll('.producto');
 productos.forEach(prod => {
   prod.addEventListener('click', () => {
     const id = prod.dataset.id;
+    
+    // Guardar telemetría
+    fetch('telemetria.php', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: 'evento=vista&producto_id=' + id
+    });
+
     window.location.href = 'apartar.php?id=' + id;
   });
 });
 </script>
+
 
 <footer><p>© 2025 Boutique Hello Girl | Todos los derechos reservados</p></footer>
 </body>

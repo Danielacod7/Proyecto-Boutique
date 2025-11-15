@@ -348,3 +348,63 @@ form label {
 
 .btn-comprado { background-color: #5cb85c; }
 .btn-comprado:hover { background-color: #449d44; }
+/* ===== Telemetría ===== */
+.telemetria-container {
+    max-width: 1000px;
+    margin: 50px auto;
+    padding: 0 20px;
+    text-align: center;
+}
+
+.telemetria-container h2 {
+    color: var(--color-secundario);
+    margin-bottom: 30px;
+    font-size: 2em;
+}
+
+.telemetria-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: var(--color-blanco);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.telemetria-table th, 
+.telemetria-table td {
+    padding: 12px 15px;
+    border-bottom: 1px solid #ddd;
+    text-align: left;
+    font-size: 0.95em;
+}
+
+.telemetria-table th {
+    background-color: var(--color-secundario);
+    color: var(--color-blanco);
+    font-weight: 600;
+}
+
+.telemetria-table tr:hover {
+    background-color: #f9f9f9;
+}
+
+.telemetria-table td {
+    color: var(--color-texto);
+}
+
+.telemetria-table .evento {
+    font-weight: bold;
+    text-transform: capitalize;
+}
+
+.telemetria-table .total {
+    text-align: center;
+}
+
+@media (max-width: 768px) {
+    .telemetria-table th, .telemetria-table td {
+        font-size: 0.85em;
+        padding: 10px;
+    }
+}
