@@ -408,3 +408,58 @@ form label {
         padding: 10px;
     }
 }
+
+
+.contacto-container {
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 20px;
+    text-align: center;
+}
+
+.contacto-info {
+    background: var(--color-blanco);
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    margin-bottom: 40px;
+}
+
+.contacto-info p {
+    margin: 10px 0;
+    font-size: 1.1em;
+}
+
+.link-mapa {
+    color: var(--color-secundario);
+    font-weight: bold;
+    text-decoration: none;
+    display: inline-block;
+    margin-top: 10px;
+    font-size: 1.1em;
+    transition: 0.3s;
+}
+
+.link-mapa:hover {
+    color: var(--color-primario);
+}
+
+.form-contacto {
+    background: var(--color-blanco);
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.form-contacto input,
+.form-contacto textarea {
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 6px;
+    width: 100%;
+}
+
+.logo {
+    width: 120px;
+    margin-bottom: 10px;
+}

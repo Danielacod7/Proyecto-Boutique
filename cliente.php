@@ -27,7 +27,7 @@ $productos = $conexion->filtrarProductos($filtroCat, $filtroTalla);
 <header><h1>Boutique Hello Girl</h1></header>
 <nav>
   <a href="cliente.php">Inicio</a>
-  <a href="#">Contacto</a>
+  <a href="contacto.php">Contacto</a>
 </nav>
 
 <section class="catalogo">
