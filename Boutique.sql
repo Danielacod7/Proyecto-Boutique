@@ -34,7 +34,7 @@ CREATE TABLE `apartados` (
   KEY `producto_id` (`producto_id`),
   CONSTRAINT `apartados_ibfk_1` FOREIGN KEY (`cliente_id`) REFERENCES `clientes` (`id`),
   CONSTRAINT `apartados_ibfk_2` FOREIGN KEY (`producto_id`) REFERENCES `productos` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -43,7 +43,7 @@ CREATE TABLE `apartados` (
 
 LOCK TABLES `apartados` WRITE;
 /*!40000 ALTER TABLE `apartados` DISABLE KEYS */;
-INSERT INTO `apartados` VALUES (1,1,4,'S','2025-11-14 20:06:08','Comprado');
+INSERT INTO `apartados` VALUES (1,1,4,'S','2025-11-14 20:06:08','Comprado'),(2,2,4,'S','2025-11-15 03:45:56','Pendiente'),(3,1,2,'L','2025-11-15 04:23:40','Pendiente');
 /*!40000 ALTER TABLE `apartados` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -88,7 +88,7 @@ CREATE TABLE `producto_tallas` (
   PRIMARY KEY (`id`),
   KEY `producto_id` (`producto_id`),
   CONSTRAINT `producto_tallas_ibfk_1` FOREIGN KEY (`producto_id`) REFERENCES `productos` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -97,7 +97,7 @@ CREATE TABLE `producto_tallas` (
 
 LOCK TABLES `producto_tallas` WRITE;
 /*!40000 ALTER TABLE `producto_tallas` DISABLE KEYS */;
-INSERT INTO `producto_tallas` VALUES (1,9,'XS',1),(2,9,'S',2),(3,4,'S',2);
+INSERT INTO `producto_tallas` VALUES (3,4,'S',1),(7,3,'M',1),(8,2,'L',2),(9,2,'XL',1);
 /*!40000 ALTER TABLE `producto_tallas` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -117,7 +117,7 @@ CREATE TABLE `productos` (
   `cantidad` int NOT NULL DEFAULT '0',
   `fecha_registro` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -126,8 +126,36 @@ CREATE TABLE `productos` (
 
 LOCK TABLES `productos` WRITE;
 /*!40000 ALTER TABLE `productos` DISABLE KEYS */;
-INSERT INTO `productos` VALUES (2,'image/1763137263_Oberol.png','Oberol azul moderno para día casual','Mujer',250.00,3,'2025-11-14 16:21:03'),(3,'image/1763137950_OberolMesclilla.jpg','Overol mezclilla juvenil','Mujer',300.00,5,'2025-11-14 16:32:30'),(4,'image/1763138202_VestidoNegro.jpg','Vestido negro para fiesta de noche\r\nelegante con tirantes ','Mujer',600.00,3,'2025-11-14 16:36:42'),(9,'image/1763149272_traje.jpeg','Falda y blusa de niña','Niña',250.00,3,'2025-11-14 19:41:12');
+INSERT INTO `productos` VALUES (2,'image/1763137263_Oberol.png','Oberol azul moderno para día casual','Mujer',250.00,4,'2025-11-14 16:21:03'),(3,'image/1763137950_OberolMesclilla.jpg','Overol mezclilla juvenil','Mujer',300.00,1,'2025-11-14 16:32:30'),(4,'image/1763138202_VestidoNegro.jpg','Vestido negro para fiesta de noche\r\nelegante con tirantes ','Mujer',600.00,3,'2025-11-14 16:36:42');
 /*!40000 ALTER TABLE `productos` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `telemetria`
+--
+
+DROP TABLE IF EXISTS `telemetria`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `telemetria` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `producto_id` int NOT NULL,
+  `evento` varchar(50) NOT NULL,
+  `categoria` varchar(50) DEFAULT NULL,
+  `talla` varchar(10) DEFAULT NULL,
+  `fecha` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `telemetria`
+--
+
+LOCK TABLES `telemetria` WRITE;
+/*!40000 ALTER TABLE `telemetria` DISABLE KEYS */;
+INSERT INTO `telemetria` VALUES (1,4,'vista',NULL,NULL,'2025-11-15 00:16:02'),(2,4,'vista',NULL,NULL,'2025-11-15 00:16:13'),(3,3,'vista',NULL,NULL,'2025-11-15 00:16:22'),(4,4,'vista',NULL,NULL,'2025-11-15 02:49:43'),(5,4,'vista',NULL,NULL,'2025-11-15 03:45:37'),(6,2,'vista',NULL,NULL,'2025-11-15 04:23:28');
+/*!40000 ALTER TABLE `telemetria` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -139,4 +167,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-11-14 15:15:15
+-- Dump completed on 2025-11-19 13:42:13
