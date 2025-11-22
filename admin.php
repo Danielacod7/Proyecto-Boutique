@@ -94,18 +94,9 @@ $productos = $conexion->filtrarProductos($filtroCat, $filtroTalla);
   <h2>Productos en el catálogo</h2>
 
   <form method="GET" class="filtros" id="formFiltros">
+   
     <div>
-      <label>Categoría:</label>
-      <select name="categoria" onchange="document.getElementById('formFiltros').submit()">
-        <option value="">Todas</option>
-        <option value="Mujer" <?= $filtroCat=='Mujer' ? 'selected' : '' ?>>Mujer</option>
-        <option value="Hombre" <?= $filtroCat=='Hombre' ? 'selected' : '' ?>>Hombre</option>
-        <option value="Niña" <?= $filtroCat=='Niña' ? 'selected' : '' ?>>Niña</option>
-        <option value="Niño" <?= $filtroCat=='Niño' ? 'selected' : '' ?>>Niño</option>
-      </select>
-    </div>
-    <div>
-      <label>Talla:</label>
+      <label>Filtros:</label>
       <select name="talla" onchange="document.getElementById('formFiltros').submit()">
         <option value="">Todas</option>
         <option value="XS" <?= $filtroTalla=='XS' ? 'selected' : '' ?>>XS</option>

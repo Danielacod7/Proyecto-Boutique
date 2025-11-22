@@ -4,7 +4,7 @@ $conexion = new Conexion();
 $enlace = $conexion->conectar();
 
 $filtroCat   = isset($_GET["categoria"]) ? $_GET["categoria"] : "";
-$filtroTalla = isset($_GET["talla"]) ? $_GET["talla"] : "";
+$filtroTalla = isset($_GET["filtro"]) ? $_GET["filtro"] : "";
 
 $productos = $conexion->filtrarProductos($filtroCat, $filtroTalla);
 ?>
@@ -15,16 +15,29 @@ $productos = $conexion->filtrarProductos($filtroCat, $filtroTalla);
   <title>Boutique Hello Girl | Catálogo</title>
   <link rel="stylesheet" href="estilos.css">
   <style>
-    .producto { position: relative; cursor:pointer; }
-    .tallas-list { font-size: 0.95em; margin-top: 8px; color: #333; }
-    .tallas-list span { display:inline-block; margin-right:8px; background:#f5f5f5; padding:4px 8px; border-radius:6px; }
+    header img { height:60px; margin-right:15px; }
+    header { display:flex; align-items:center; padding:10px; }
+
+    .producto { position: relative; cursor:pointer; padding:15px; border-radius:12px; background:#fff; box-shadow:0 2px 6px rgba(0,0,0,0.15); }
+    .filtros-list { font-size: 0.95em; margin-top: 8px; color: #333; }
+    .filtros-list span { display:inline-block; margin-right:8px; background:#f5f5f5; padding:4px 8px; border-radius:6px; }
     .producto img { width:100%; height:250px; object-fit:cover; border-radius:10px; }
+
+    .precio { font-size:1.8em; font-weight:bold; color:#e91e63; margin:10px 0; }
+
     .filtros { display:flex; gap:12px; justify-content:flex-start; margin-bottom:18px; }
     .filtros select { padding:8px 12px; border-radius:8px; border:1px solid #bbb; }
+
+    
+    footer a { color:#e91e63; }
   </style>
 </head>
 <body>
-<header><h1>Boutique Hello Girl</h1></header>
+<header>
+  <img src="image/logo.png" alt="Logo">
+  <h1>Boutique Hello Girl</h1>
+</header>
+
 <nav>
   <a href="cliente.php">Inicio</a>
   <a href="contacto.php">Contacto</a>
@@ -34,19 +47,10 @@ $productos = $conexion->filtrarProductos($filtroCat, $filtroTalla);
   <h2>Productos en el catálogo</h2>
 
   <form method="GET" class="filtros" id="formFiltros">
+  
     <div>
-      <label>Categoría:</label>
-      <select name="categoria" onchange="document.getElementById('formFiltros').submit()">
-        <option value="">Todas</option>
-        <option value="Mujer" <?= $filtroCat=='Mujer' ? 'selected' : '' ?>>Mujer</option>
-        <option value="Hombre" <?= $filtroCat=='Hombre' ? 'selected' : '' ?>>Hombre</option>
-        <option value="Niña" <?= $filtroCat=='Niña' ? 'selected' : '' ?>>Niña</option>
-        <option value="Niño" <?= $filtroCat=='Niño' ? 'selected' : '' ?>>Niño</option>
-      </select>
-    </div>
-    <div>
-      <label>Talla:</label>
-      <select name="talla" onchange="document.getElementById('formFiltros').submit()">
+      <label>Filtro:</label>
+      <select name="filtro" onchange="document.getElementById('formFiltros').submit()">
         <option value="">Todas</option>
         <option value="XS" <?= $filtroTalla=='XS' ? 'selected' : '' ?>>XS</option>
         <option value="S" <?= $filtroTalla=='S' ? 'selected' : '' ?>>S</option>
@@ -64,14 +68,17 @@ $productos = $conexion->filtrarProductos($filtroCat, $filtroTalla);
 
     <?php foreach ($productos as $p): ?>
       <?php $tallas = $conexion->obtenerTallasPorProducto($p['id']); ?>
+      <?php 
+        $sinStock = true;
+        foreach ($tallas as $t) { if ($t['cantidad'] > 0) { $sinStock = false; break; } }
+      ?>
       <div class="producto" data-id="<?= $p['id'] ?>">
         <img src="<?= $p['imagen'] ?>" alt="<?= $p['descripcion'] ?>">
         <h3><?= $p['descripcion'] ?></h3>
-        <p class="categoria">Categoría: <?= $p['categoria'] ?></p>
         <p class="precio">$<?= number_format($p['precio'],2) ?> MXN</p>
-        <div class="tallas-list">
-          <?php if (empty($tallas)): ?>
-            <em>Sin tallas disponibles</em>
+        <div class="filtros-list">
+          <?php if ($sinStock): ?>
+            <em style="color:red;font-weight:bold;">Poca disponibilidad</em>
           <?php else: ?>
             <?php foreach ($tallas as $t): ?>
               <span><?= $t['talla'] ?>: <?= $t['cantidad'] ?></span>
@@ -88,8 +95,7 @@ const productos = document.querySelectorAll('.producto');
 productos.forEach(prod => {
   prod.addEventListener('click', () => {
     const id = prod.dataset.id;
-    
-    // Guardar telemetría
+
     fetch('telemetria.php', {
       method: 'POST',
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
@@ -101,7 +107,9 @@ productos.forEach(prod => {
 });
 </script>
 
-
-<footer><p>© 2025 Boutique Hello Girl | Todos los derechos reservados</p></footer>
+<footer>
+  <p>© 2025 Boutique Hello Girl | Todos los derechos reservados</p>
+  <p><a href="politicas.php">Políticas de privacidad</a> | <a href="terminos.php">Términos y condiciones</a></p>
+</footer>
 </body>
 </html>
