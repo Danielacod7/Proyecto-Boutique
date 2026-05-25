@@ -1,28 +1,39 @@
-## Proyecto Boutique
+# Boutique — Client Management Web App
 
-Este repositorio contiene la estructura inicial de una aplicación web enfocada en la gestión de una boutique. Incluye la base para autenticación de usuarios, organización de archivos y la configuración necesaria para comenzar con el desarrollo.
+Full-stack web application built as a 7th-semester academic project 
+for a small retail client. Provides user authentication and a 
+foundation for managing boutique inventory and customers.
 
-### Funcionalidades actuales
-- Inicio de sesión con Supabase: autenticación mediante correo y contraseña.
-- Protección de sesión: las páginas verifican el estado de sesión y redirigen al login si no existe.
-- Interfaz moderna: diseño responsivo con soporte de íconos.
-- Gestión de sesión: cierre de sesión desde la página principal.
+**Stack:** PHP · MySQL · HTML/CSS/JavaScript
 
+## Features
 
-### Configuración inicial
-1. Clona este repositorio:
-https://github.com/Danielacod7/Proyecto-Boutique.git
+- User authentication (email/password login)
+- Session-protected pages with automatic redirect to login
+- Customer registration module
+- Inventory consultation module
+- Responsive UI
 
-3. Crea ek archivo de configuración pública en frontend/config.js con tus credenciales de Supabase.
+## Setup
 
-const SUPABASE_URL = "https://tu-proyecto.supabase.co";
-const SUPABASE_ANON_KEY = "tu-clave-anonima";
+1. Clone the repo:
+   `git clone https://github.com/Danielacod7/Proyecto-Boutique.git`
 
-3. Abre frontend/login.html en tu navegador para probar la autenticación.
+2. Import the database schema from `/database/schema.sql` into 
+   your MySQL server.
 
+3. Configure your database connection in `backend/config.php`:
+```php
+   $db_host = "localhost";
+   $db_name = "boutique";
+   $db_user = "your_user";
+   $db_pass = "your_password";
+```
 
-###Próximos pasos
-- Implementar página de registro de usuario.
-- Agregar recuperación de contraseña
-- Integrar la lógica para mostrar y gestionar los datos de la boutique.
-- Configurar políticas de acceso en Supabase (RLS).
+4. Serve the project via PHP's built-in server or Apache/Nginx.
+
+## Team
+
+Built by [Danielacod7](https://github.com/Danielacod7),
+[VictorJaBa](https://github.com/VictorJaBa), and
+[Goril0](https://github.com/Goril0).
